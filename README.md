@@ -32,6 +32,18 @@ The project consists of three main tasks:
   - Create a bitmask to store the accessed and dirty bits.
   - Walk through the page table to check and update the bitmask.
   - Copy the bitmask to the user address using `copyout()`.
+    
+### Instructions for Running xv6 and Using pgaccess
+1. Please clone this repo.
+2. Run `make qemu` to start the xv6 OS.
+3. If you create a basic user program and use a heap in it, you will notice the occurrence of page faults.
+4. You can use the `pgaccess` system call to check which pages have been accessed and/or dirty. Use `pgaccess` in this way:
+   ```c
+   uint64 accessed_bitmap;
+   arr_to_access = malloc(32 * PGSIZE);
+   pgaccess(arr_to_access, 32, &accessed_bitmap);
+   ```
+
 
 ## What I Learned
 
